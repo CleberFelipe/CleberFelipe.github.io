@@ -10,8 +10,8 @@
 
     <style>
         body {
-            padding: 20px;
-            font-size: 18pt;
+            padding: 32px;
+            font-size: 28pt;
         }
 
         #meuInput {
@@ -35,6 +35,12 @@
         #listaLouvores{
             font: 2em sans-serif;
         }
+
+        .btn-adicionar{
+            font-size: 28pt;
+            font-weight: 800;
+            color: white;
+        }
     </style>
 </head>
 
@@ -46,7 +52,7 @@
         <div class="d-flex mb-3 gap-2">
             <input type="text" id="meuInput" class="form-control" placeholder="Buscar louvor por nome ou número...">
             <!-- Botão para abrir modal -->
-            <button class="btn btn-lg btn-info mb-3" data-bs-toggle="modal" data-bs-target="#modalLista" id="btnVerLista">
+            <button class="btn btn-lg btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#modalLista" id="btnVerLista">
                 Exibir Lista
             </button>
         </div>
@@ -55,31 +61,31 @@
         <table class="table table-bordered">
             <thead class="table-light">
                 <tr>
-                    <th>Número</th>
+                    <th style="width: 50px; text-align: center;">Número</th>
                     <th>Nome do Louvor</th>
                     <th>Adicionar</th>
                 </tr>
             </thead>
             <tbody id="tabelaPrincipal">
                 <tr>
-                    <td>1</td>
+                    <td style="text-align: center;">1</td>
                     <td>Louvor Exemplo 1</td>
-                    <td><button class="btn btn-success btn-sm btn-adicionar">+</button></td>
+                    <td><button class="btn btn-info btn-lg btn-adicionar">+</button></td>
                 </tr>
                 <tr>
-                    <td>2</td>
+                    <td style="text-align: center;">2</td>
                     <td>Louvor Exemplo 2</td>
-                    <td><button class="btn btn-success btn-sm btn-adicionar">+</button></td>
+                    <td><button class="btn btn-info btn-lg btn-adicionar">+</button></td>
                 </tr>
                 <tr>
-                    <td>3</td>
+                    <td style="text-align: center;">3</td>
                     <td>Louvor da Vitória</td>
-                    <td><button class="btn btn-success btn-sm btn-adicionar">+</button></td>
+                    <td><button class="btn btn-info btn-lg btn-adicionar">+</button></td>
                 </tr>
                 <tr>
-                    <td>4</td>
+                    <td style="text-align: center;">4</td>
                     <td>Gratidão Eterna</td>
-                    <td><button class="btn btn-success btn-sm btn-adicionar">+</button></td>
+                    <td><button class="btn btn-info btn-lg btn-adicionar">+</button></td>
                 </tr>
             </tbody>
         </table>
