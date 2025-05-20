@@ -2,163 +2,190 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz SQL - Capítulo 4</title>
+  <title>Lista de Louvores</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 2rem;
-      background-color: #f9f9f9;
-    }
-    .quiz-container {
-      background-color: #fff;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 700px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      text-align: center;
-    }
-    .question {
-      margin-bottom: 1.5rem;
-    }
-    .question h3 {
-      margin-bottom: 0.5rem;
-    }
-    .options label {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    .submit-btn {
-      display: block;
-      margin: 2rem auto;
-      padding: 0.5rem 2rem;
-      background-color: #4CAF50;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .result {
-      text-align: center;
-      font-size: 1.2rem;
-      margin-top: 1rem;
+      padding: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="quiz-container">
-    <h1>Quiz SQL - Capítulo 4</h1>
-    <form id="quiz-form">
-      <!-- Questions dynamically inserted here -->
-    </form>
-    <button class="submit-btn" onclick="submitQuiz()">Enviar Respostas</button>
-    <div class="result" id="result"></div>
+
+  <div class="container">
+
+    <!-- Campo de busca -->
+    <div class="d-flex mb-3 gap-2">
+      <input type="text" id="meuInput" class="form-control" placeholder="Buscar louvor...">
+    </div>
+
+    <!-- Tabela principal -->
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Número</th>
+          <th>Nome do Louvor</th>
+          <th>Adicionar</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaPrincipal">
+        <tr>
+          <td>1</td>
+          <td>Louvor Exemplo 1</td>
+          <td><button class="btn btn-success btn-sm btn-adicionar">+</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Louvor Exemplo 2</td>
+          <td><button class="btn btn-success btn-sm btn-adicionar">+</button></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Louvor da Vitória</td>
+          <td><button class="btn btn-success btn-sm btn-adicionar">+</button></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Gratidão Eterna</td>
+          <td><button class="btn btn-success btn-sm btn-adicionar">+</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Botão para abrir modal -->
+    <button class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#modalLista" id="btnVerLista">
+      Ver Lista Gerada
+    </button>
+
+    <!-- Tabela de louvores adicionados -->
+    <h5>Louvores Adicionados</h5>
+    <table class="table table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th>Número</th>
+          <th>Nome do Louvor</th>
+          <th>Remover</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaAdicionados">
+        <!-- Itens adicionados vão aparecer aqui -->
+      </tbody>
+    </table>
   </div>
 
-  <script>
-    const questions = [
-      {
-        question: "1. Qual comando SQL é utilizado para consultar dados em uma tabela?",
-        options: ["SHOW", "SELECT", "FIND", "READ"],
-        answer: 1
-      },
-      {
-        question: "2. O que o seguinte comando retorna? SELECT nome FROM clientes WHERE cidade = 'São Paulo';",
-        options: ["Todos os nomes de clientes", "Nomes dos clientes da cidade de São Paulo", "Todos os dados dos clientes de São Paulo", "Um erro, pois está faltando o FROM"],
-        answer: 1
-      },
-      {
-        question: "3. Qual cláusula é usada para ordenar os resultados de uma consulta SQL?",
-        options: ["SORT BY", "GROUP BY", "ORDER BY", "ARRANGE BY"],
-        answer: 2
-      },
-      {
-        question: "4. Dado o comando: SELECT nome FROM produtos ORDER BY preco DESC; O que significa DESC?",
-        options: ["Ordem alfabética", "Ordem crescente", "Agrupamento por preço", "Ordem decrescente"],
-        answer: 3
-      },
-      {
-        question: "5. Qual dessas opções é um tipo de dado adequado para armazenar uma data de nascimento?",
-        options: ["VARCHAR", "DATE", "INT", "FLOAT"],
-        answer: 1
-      },
-      {
-        question: "6. Para limitar o número de registros retornados em uma consulta, utilizamos qual comando?",
-        options: ["LIMIT", "TOP", "MAXROWS", "COUNT"],
-        answer: 0
-      },
-      {
-        question: "7. Qual comando retorna os registros da 3ª página de uma consulta com 10 resultados por página?",
-        options: [
-          "SELECT * FROM tabela LIMIT 10;",
-          "SELECT * FROM tabela OFFSET 30;",
-          "SELECT * FROM tabela LIMIT 10 OFFSET 20;",
-          "SELECT * FROM tabela LIMIT 30 OFFSET 10;"
-        ],
-        answer: 2
-      },
-      {
-        question: "8. Qual das alternativas representa uma filtragem por padrão de texto em SQL?",
-        options: [
-          "WHERE nome = '%Ana%'",
-          "WHERE nome LIKE '%Ana%'",
-          "WHERE nome = LIKE '%Ana%'",
-          "WHERE nome HAS '%Ana%'"
-        ],
-        answer: 1
-      },
-      {
-        question: "9. Por que é importante usar corretamente os tipos de dados nas tabelas?",
-        options: [
-          "Para ocupar mais espaço em disco",
-          "Para permitir a inserção de qualquer valor",
-          "Para melhorar a performance e garantir a integridade dos dados",
-          "Apenas para facilitar a leitura do código"
-        ],
-        answer: 2
-      },
-      {
-        question: "10. O que acontece se omitirmos a cláusula WHERE em um SELECT?",
-        options: [
-          "A consulta retorna um erro",
-          "Nenhum registro será retornado",
-          "Somente registros nulos serão exibidos",
-          "Todos os registros da tabela são retornados"
-        ],
-        answer: 3
-      }
-    ];
+  <!-- Modal Bootstrap -->
+  <div class="modal fade" id="modalLista" tabindex="-1" aria-labelledby="modalListaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalListaLabel">Lista de Louvores</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <ul id="listaLouvores" class="list-group">
+            <!-- Conteúdo gerado dinamicamente -->
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    const form = document.getElementById('quiz-form');
-    questions.forEach((q, i) => {
-      const div = document.createElement('div');
-      div.classList.add('question');
-      div.innerHTML = `<h3>${q.question}</h3>`;
-      q.options.forEach((opt, j) => {
-        div.innerHTML += `
-          <label>
-            <input type="radio" name="q${i}" value="${j}" required>
-            ${opt}
-          </label>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const tabelaPrincipal = document.getElementById('tabelaPrincipal');
+    const tabelaAdicionados = document.getElementById('tabelaAdicionados');
+    const campoBusca = document.getElementById('meuInput');
+
+    const adicionados = new Set();
+
+    // Adicionar louvor
+    tabelaPrincipal.addEventListener('click', function (e) {
+      if (e.target.classList.contains('btn-adicionar')) {
+        const linha = e.target.closest('tr');
+        const numero = linha.children[0].textContent.trim();
+        const nome = linha.children[1].textContent.trim();
+        const idLouvor = numero + nome;
+
+        if (adicionados.has(idLouvor)) {
+          alert('Esse louvor já foi adicionado!');
+          return;
+        }
+
+        const novaLinha = document.createElement('tr');
+        novaLinha.innerHTML = `
+          <td>${numero}</td>
+          <td>${nome}</td>
+          <td><button class="btn btn-danger btn-sm btn-remover">Remover</button></td>
         `;
-      });
-      form.appendChild(div);
+        tabelaAdicionados.appendChild(novaLinha);
+        adicionados.add(idLouvor);
+      }
     });
 
-    function submitQuiz() {
-      const formData = new FormData(form);
-      let score = 0;
-      questions.forEach((q, i) => {
-        if (parseInt(formData.get(`q${i}`)) === q.answer) {
-          score++;
-        }
+    // Remover louvor
+    tabelaAdicionados.addEventListener('click', function (e) {
+      if (e.target.classList.contains('btn-remover')) {
+        const linha = e.target.closest('tr');
+        const numero = linha.children[0].textContent.trim();
+        const nome = linha.children[1].textContent.trim();
+        const idLouvor = numero + nome;
+
+        adicionados.delete(idLouvor);
+        linha.remove();
+      }
+    });
+
+    // Filtrar tabela principal
+    campoBusca.addEventListener('input', function () {
+      const filtro = this.value.toLowerCase();
+
+      Array.from(tabelaPrincipal.rows).forEach((linha, index) => {
+        if (index === 0) return; // cabeçalho
+        const texto = linha.children[1].textContent.toLowerCase();
+        linha.style.display = texto.includes(filtro) ? '' : 'none';
       });
-      document.getElementById('result').textContent = `Você acertou ${score} de ${questions.length} questões.`;
-    }
+    });
+
+    // Gerar conteúdo da modal
+    document.getElementById('btnVerLista').addEventListener('click', function () {
+      const lista = document.getElementById('listaLouvores');
+      lista.innerHTML = '';
+
+      const linhas = tabelaAdicionados.querySelectorAll('tr');
+
+      if (linhas.length === 0) {
+        const item = document.createElement('li');
+        item.className = 'list-group-item';
+        item.textContent = 'Nenhum louvor adicionado.';
+        lista.appendChild(item);
+        return;
+      }
+
+      linhas.forEach(linha => {
+        const numero = linha.children[0].textContent.trim();
+        const nome = linha.children[1].textContent.trim();
+
+        const item = document.createElement('li');
+        item.className = 'list-group-item';
+
+        const link = document.createElement('a');
+        link.href = `${numero}.html`;
+        link.textContent = `${numero} - ${nome}`;
+        link.target = '_blank';
+
+        item.appendChild(link);
+        lista.appendChild(item);
+      });
+    });
   </script>
+
 </body>
 </html>
