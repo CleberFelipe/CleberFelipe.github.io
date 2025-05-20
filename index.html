@@ -11,6 +11,29 @@
     <style>
         body {
             padding: 20px;
+            font-size: 18pt;
+        }
+
+        #meuInput {
+            font-size: 28pt;
+        }    
+        
+        #btnVerLista{
+            width: 300px;
+            font-size: 22pt;
+            font-weight: 600;
+            padding: 26px 16px;
+            margin: 0%;
+        }
+
+        #modalListaLabel{
+            font: 28pt sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        #listaLouvores{
+            font: 2em sans-serif;
         }
     </style>
 </head>
@@ -23,7 +46,7 @@
         <div class="d-flex mb-3 gap-2">
             <input type="text" id="meuInput" class="form-control" placeholder="Buscar louvor por nome ou número...">
             <!-- Botão para abrir modal -->
-            <button class="btn btn-info mb-3" data-bs-toggle="modal" data-bs-target="#modalLista" id="btnVerLista">
+            <button class="btn btn-lg btn-info mb-3" data-bs-toggle="modal" data-bs-target="#modalLista" id="btnVerLista">
                 Exibir Lista
             </button>
         </div>
@@ -83,12 +106,12 @@
     <div class="modal fade" id="modalLista" tabindex="-1" aria-labelledby="modalListaLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalListaLabel">Lista de Louvores</h5>
+                <div class="modal-header container">
+                    <h5 class="modal-title text-danger" id="modalListaLabel">Lista de Louvores</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
-                <div class="modal-body">
-                    <ul id="listaLouvores" class="list-group">
+                <div class="modal-body container">
+                    <ul id="listaLouvores" class="list-group text-warning">
                         <!-- Conteúdo gerado dinamicamente -->
                     </ul>
                 </div>
