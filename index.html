@@ -2,223 +2,304 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Lista de Louvores</title>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atividade Avaliativa SQL</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
         body {
-            padding: 32px;
-            font-size: 28pt;
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
         }
 
-        #meuInput {
-            font-size: 28pt;
-        }    
-        
-        #btnVerLista{
-            width: 300px;
-            font-size: 22pt;
-            font-weight: 600;
-            padding: 26px 16px;
-            margin: 0%;
+        h1 {
+            text-align: center;
         }
 
-        #modalListaLabel{
-            font: 28pt sans-serif;
-            font-weight: 600;
-            text-transform: uppercase;
+        .tables {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
         }
 
-        #listaLouvores{
-            font: 2em sans-serif;
+        table {
+            border-collapse: collapse;
+            width: 45%;
+            background-color: #fff;
         }
 
-        .btn-adicionar{
-            font-size: 28pt;
-            font-weight: 800;
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4c7aaf;
             color: white;
+        }
+
+        .question {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin: 30px auto;
+            padding: 10px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .gabarito {
+            display: none;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .gabarito pre {
+            white-space: pre-wrap;
         }
     </style>
 </head>
 
 <body>
+    <div class="container">
+        <h1>Atividade Avaliativa: Comandos SQL</h1>
 
-    <div class="container-fluid">
+        <div class="tables">
+            <table>
+                <tr>
+                    <th colspan="5">
+                        PRODUTO
+                    </th>
+                </tr>
+                <tr>
+                    <th>IDPRODUTO</th>
+                    <th>NOME</th>
+                    <th>PESO</th>
+                    <th>CATEGORIA</th>
+                    <th>VALIDADE</th>
+                </tr>
+                <tr>
+                    <td>101</td>
+                    <td>Arroz</td>
+                    <td>5.0</td>
+                    <td>Alimento</td>
+                    <td>2025-12-31</td>
+                </tr>
+                <tr>
+                    <td>102</td>
+                    <td>Leite</td>
+                    <td>1.0</td>
+                    <td>Bebida</td>
+                    <td>2025-10-01</td>
+                </tr>
+                <tr>
+                    <td>103</td>
+                    <td>Feijão</td>
+                    <td>1.0</td>
+                    <td>Alimento</td>
+                    <td>2025-11-15</td>
+                </tr>
+                <tr>
+                    <td>104</td>
+                    <td>Suco</td>
+                    <td>1.5</td>
+                    <td>Bebida</td>
+                    <td>2025-09-20</td>
+                </tr>
+            </table>
 
-        <!-- Campo de busca -->
-        <div class="d-flex mb-3 gap-2">
-            <input type="text" id="meuInput" class="form-control" placeholder="Buscar louvor por nome ou número...">
-            <!-- Botão para abrir modal -->
-            <button class="btn btn-lg btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#modalLista" id="btnVerLista">
-                Exibir Lista
-            </button>
+            <table>
+                <tr>
+                    <th colspan="5">
+                        COMPRA
+                    </th>
+                </tr>
+                <tr>
+                    <th>IDCOMPRA</th>
+                    <th>IDPRODUTO</th>
+                    <th>PRECO</th>
+                    <th>QUANTIDADE</th>
+                    <th>DATA_COMPRA</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>101</td>
+                    <td>20.00</td>
+                    <td>3</td>
+                    <td>2025-05-01</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>102</td>
+                    <td>4.50</td>
+                    <td>10</td>
+                    <td>2025-04-30</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>103</td>
+                    <td>7.20</td>
+                    <td>5</td>
+                    <td>2025-05-10</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>101</td>
+                    <td>19.00</td>
+                    <td>2</td>
+                    <td>2025-06-01</td>
+                </tr>
+            </table>
         </div>
-
-        <!-- Tabela principal -->
-        <table class="table table-bordered">
-            <thead class="table-light">
-                <tr>
-                    <th style="width: 50px; text-align: center;">Número</th>
-                    <th>Nome do Louvor</th>
-                    <th>Adicionar</th>
-                </tr>
-            </thead>
-            <tbody id="tabelaPrincipal">
-                <tr>
-                    <td style="text-align: center;">1</td>
-                    <td>Louvor Exemplo 1</td>
-                    <td><button class="btn btn-info btn-lg btn-adicionar">+</button></td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;">2</td>
-                    <td>Louvor Exemplo 2</td>
-                    <td><button class="btn btn-info btn-lg btn-adicionar">+</button></td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;">3</td>
-                    <td>Louvor da Vitória</td>
-                    <td><button class="btn btn-info btn-lg btn-adicionar">+</button></td>
-                </tr>
-                <tr>
-                    <td style="text-align: center;">4</td>
-                    <td>Gratidão Eterna</td>
-                    <td><button class="btn btn-info btn-lg btn-adicionar">+</button></td>
-                </tr>
-            </tbody>
-        </table>
-
-
-
-        <!-- Tabela de louvores adicionados -->
-        <h5>Louvores Adicionados</h5>
-        <table class="table table-bordered">
-            <thead class="table-light">
-                <tr>
-                    <th>Número</th>
-                    <th>Nome do Louvor</th>
-                    <th>Remover</th>
-                </tr>
-            </thead>
-            <tbody id="tabelaAdicionados">
-                <!-- Itens adicionados vão aparecer aqui -->
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Modal Bootstrap -->
-    <div class="modal fade" id="modalLista" tabindex="-1" aria-labelledby="modalListaLabel" aria-hidden="true">
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content">
-                <div class="modal-header container">
-                    <h5 class="modal-title text-danger" id="modalListaLabel">Lista de Louvores</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body container">
-                    <ul id="listaLouvores" class="list-group text-warning">
-                        <!-- Conteúdo gerado dinamicamente -->
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                </div>
+        <h1>Respondas as seguintes questões</h1>
+        <form onsubmit="mostrarGabarito(); return false;">
+            <!-- INSERT -->
+            <div class="question"><strong>1.</strong> Insira um novo produto com os seguintes dados: ID = 101, NOME =
+                'Arroz', PESO = 5.0, CATEGORIA = 'Alimento', VALIDADE = '2025-12-31'.<br><textarea name="q1"></textarea>
             </div>
+            <div class="question"><strong>2.</strong> Cadastre um produto chamado 'Leite' com peso 1.0, categoria
+                'Bebida' e
+                validade '2025-10-01'.<br><textarea name="q2"></textarea></div>
+            <div class="question"><strong>3.</strong> Insira uma nova compra com ID 1, relacionada ao produto com ID
+                101, com preço 20.00, quantidade 3 e data da compra '2025-05-01'.<br><textarea name="q3"></textarea></div>
+            <div class="question"><strong>4.</strong> Insira uma nova compra com ID 2, relacionada ao produto com ID 102, com preço 4.50, quantidade
+                10
+                e data de compra '2025-04-30'.<br><textarea name="q4"></textarea></div>
+            <div class="question"><strong>5.</strong> Faça um INSERT que insira três produtos diferentes usando um único
+                comando.<br><textarea name="q5"></textarea></div>
+
+            <!-- SELECT (fácil) -->
+            <div class="question"><strong>6.</strong> Selecione todos os dados da tabela PRODUTO.<br><textarea
+                    name="q6"></textarea></div>
+            <div class="question"><strong>7.</strong> Exiba apenas os nomes dos produtos da tabela PRODUTO.<br><textarea
+                    name="q7"></textarea></div>
+            <div class="question"><strong>8.</strong> Liste os produtos da categoria 'Alimento'.<br><textarea
+                    name="q8"></textarea></div>
+            <div class="question"><strong>9.</strong> Mostre o nome e o peso dos produtos com peso maior que
+                2.0.<br><textarea name="q9"></textarea></div>
+            <div class="question"><strong>10.</strong> Liste todos os produtos com validade antes de
+                '2025-11-01'.<br><textarea name="q10"></textarea></div>
+            <div class="question"><strong>11.</strong> Exiba os produtos ordenados pelo nome em ordem
+                alfabética.<br><textarea name="q11"></textarea></div>
+
+            <!-- SELECT (médio) -->
+            <div class="question"><strong>12.</strong> Mostre os produtos cujo nome começa com a letra 'L'.<br><textarea
+                    name="q12"></textarea></div>
+            <div class="question"><strong>13.</strong> Exiba os produtos com validade no mês 10.<br><textarea
+                    name="q13"></textarea>
+            </div>
+            <div class="question"><strong>14.</strong> Liste os produtos da categoria 'Bebida' ordenados por
+                validade.<br><textarea name="q14"></textarea></div>
+            <div class="question"><strong>15.</strong> Exiba os produtos com peso entre 1.0 e 3.0 e validade após
+                '2025-06-01'.<br><textarea name="q15"></textarea></div>
+            <div class="question"><strong>16.</strong> Mostre os nomes dos produtos e seus pesos, renomeando as
+                colunas para 'Produto' e 'Preço (kg)'.<br><textarea name="q16"></textarea></div>
+            <div class="question"><strong>17.</strong> Selecione as compras cujos produtos pertencem à categoria
+                'Alimento'.<br><textarea name="q17"></textarea></div>
+
+            <!-- SELECT (difícil) -->
+            <div class="question"><strong>18.</strong> Liste todas as compras com nome do produto, preço e
+                quantidade.<br><textarea name="q18"></textarea></div>
+            <div class="question"><strong>19.</strong> Mostre o nome dos produtos comprados em maio e junho.<br><textarea name="q19"></textarea></div>
+            <div class="question"><strong>20.</strong> Exiba o nome dos produtos da categoria 'Bebidas' que foram comprados.<br><textarea name="q20"></textarea></div>
+            <div class="question"><strong>21.</strong> Liste os produtos que foram comprados cuja quantidade foi maior que 4 unidades.<br><textarea
+                    name="q21"></textarea></div>
+            <div class="question"><strong>22.</strong> Mostre as compras realizadas dos produtos com data de vencimento em novembro.<br><textarea name="q22"></textarea></div>
+            <div class="question"><strong>23.</strong> Exiba o nome dos produtos que foram compradas mais de 5 unidades por menos de R$ 20,00 cada.<br><textarea name="q23"></textarea></div>
+
+            <!-- UPDATE -->
+            <div class="question"><strong>24.</strong> Atualize o peso do produto com ID 101 para 5.5.<br><textarea
+                    name="q24"></textarea></div>
+            <div class="question"><strong>25.</strong> Altere a validade do produto 'Leite' para
+                '2025-12-01'.<br><textarea name="q25"></textarea></div>
+            <div class="question"><strong>26.</strong> Aumente o preço em 10% de todas as compras feitas antes de
+                '2025-05-01'.<br><textarea name="q26"></textarea></div>
+            <div class="question"><strong>27.</strong> Corrija a categoria de todos os produtos chamados 'Leite' para
+                'Laticínio'.<br><textarea name="q27"></textarea></div>
+
+            <!-- DELETE -->
+            <div class="question"><strong>28.</strong> Delete a compra com ID 1.<br><textarea name="q28"></textarea>
+            </div>
+            <div class="question"><strong>29.</strong> Remova todos os produtos com validade anterior a
+                '2025-01-01'.<br><textarea name="q29"></textarea></div>
+            <div class="question"><strong>30.</strong> Apague todas as compras associadas ao produto de ID
+                102.<br><textarea name="q30"></textarea></div>
+
+
+            <!-- Questões aqui (mantidas como estavam) -->
+            <!-- ... (omitir repetição por limitação) -->
+            <input type="submit" value="Enviar Respostas">
+        </form>
+
+        <div class="gabarito" id="gabarito">
+            <h2>Gabarito</h2>
+            <pre>
+    1. INSERT INTO PRODUTO VALUES (101, 'Arroz', 5.0, 'Alimento', '2025-12-31');
+    2. INSERT INTO PRODUTO VALUES (102, 'Leite', 1.0, 'Bebida', '2025-10-01');
+    3. INSERT INTO COMPRA VALUES (1, 101, 20.00, 3, '2025-05-01');
+    4. INSERT INTO COMPRA VALUES (2, 102, 4.50, 10, '2025-04-30');
+    5. INSERT INTO PRODUTO (IDPRODUTO, NOME, PESO, CATEGORIA, VALIDADE) VALUES (105, 'Macarrão', 0.5, 'Alimento', '2025-12-01'), (106, 'Refrigerante', 2.0, 'Bebida', '2025-10-10'), (107, 'Café', 0.25, 'Bebida', '2026-01-01');
+    6. SELECT * FROM PRODUTO;
+    7. SELECT NOME FROM PRODUTO;
+    8. SELECT * FROM PRODUTO WHERE CATEGORIA = 'Alimento';
+    9. SELECT NOME, PESO FROM PRODUTO WHERE PESO > 2.0;
+    10. SELECT * FROM PRODUTO WHERE VALIDADE < '2025-11-01';
+    11. SELECT * FROM PRODUTO ORDER BY NOME;
+    12. SELECT * FROM PRODUTO WHERE NOME LIKE 'L%';
+    13. SELECT * FROM PRODUTO WHERE MONTH(DATA_VALIDADE) = 10;
+    14. SELECT * FROM PRODUTO WHERE CATEGORIA = 'Bebida' ORDER BY VALIDADE;
+    15. SELECT * FROM PRODUTO WHERE PESO BETWEEN 1.0 AND 3.0 AND VALIDADE > '2025-06-01';
+    16. SELECT NOME AS "Produto", PESO AS "Peso (kg)" FROM PRODUTO;
+    17. SELECT COMPRA.* FROM COMPRA, PRODUTO WHERE CATEGORIA = 'Alimento' AND COMPRA.IDPRODUTO = PRODUTO.IDPRODUTO;
+    18. SELECT C.IDCOMPRA, P.NOME, C.PRECO, C.QUANTIDADE FROM COMPRA C JOIN PRODUTO P ON C.IDPRODUTO = P.IDPRODUTO;
+    19. SELECT P.NOME FROM COMPRA C, PRODUTO P WHERE MONTH(C.DATA_COMPRA) IN (5, 6) AND C.IDPRODUTO = P.IDPRODUTO;
+    20. SELECT P.NOME FROM COMPRA C, PRODUTO P WHERE P.CATEGORIA = 'Bebida' AND  C.IDPRODUTO = P.IDPRODUTO;
+    21. SELECT P.* FROM PRODUTO P, COMPRA C WHERE C.QUANTIDADE > 4 AND C.IDPRODUTO = P.IDPRODUTO;
+    22. SELECT C.* FROM COMPRA C, PRODUTO P WHERE C.IDPRODUTO = P.IDPRODUTO AND MONTH(P.VALIDADE) = 11;
+    23. SELECT P.NOME FROM COMPRA C, PRODUTO P WHERE C.IDPRODUTO = P.IDPRODUTO AND C.QUANTIDADE > 5 AND C.PRECO < 20.00;
+    24. UPDATE PRODUTO SET PESO = 5.5 WHERE IDPRODUTO = 101;
+    25. UPDATE PRODUTO SET VALIDADE = '2025-12-01' WHERE NOME = 'Leite';
+    26. UPDATE COMPRA SET PRECO = PRECO * 1.10 WHERE DATA_COMPRA < '2025-05-01';
+    27. UPDATE PRODUTO SET CATEGORIA = 'Laticínio' WHERE NOME = 'Leite';
+    28. DELETE FROM COMPRA WHERE IDCOMPRA = 1;
+    29. DELETE FROM PRODUTO WHERE VALIDADE < '2025-01-01';
+    30. DELETE FROM COMPRA WHERE IDPRODUTO = 102;
+        </pre>
         </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
-        const tabelaPrincipal = document.getElementById('tabelaPrincipal');
-        const tabelaAdicionados = document.getElementById('tabelaAdicionados');
-        const campoBusca = document.getElementById('meuInput');
-
-        const adicionados = new Set();
-
-        // Adicionar louvor
-        tabelaPrincipal.addEventListener('click', function (e) {
-            if (e.target.classList.contains('btn-adicionar')) {
-                const linha = e.target.closest('tr');
-                const numero = linha.children[0].textContent.trim();
-                const nome = linha.children[1].textContent.trim();
-                const idLouvor = numero + nome;
-
-                if (adicionados.has(idLouvor)) {
-                    alert('Esse louvor já foi adicionado!');
-                    return;
-                }
-
-                const novaLinha = document.createElement('tr');
-                novaLinha.innerHTML = `
-          <td>${numero}</td>
-          <td>${nome}</td>
-          <td><button class="btn btn-danger btn-sm btn-remover">Remover</button></td>
-        `;
-                tabelaAdicionados.appendChild(novaLinha);
-                adicionados.add(idLouvor);
-            }
-        });
-
-        // Remover louvor
-        tabelaAdicionados.addEventListener('click', function (e) {
-            if (e.target.classList.contains('btn-remover')) {
-                const linha = e.target.closest('tr');
-                const numero = linha.children[0].textContent.trim();
-                const nome = linha.children[1].textContent.trim();
-                const idLouvor = numero + nome;
-
-                adicionados.delete(idLouvor);
-                linha.remove();
-            }
-        });
-
-        // Filtrar tabela principal
-        campoBusca.addEventListener('input', function () {
-            const filtro = this.value.toLowerCase();
-
-            Array.from(tabelaPrincipal.rows).forEach((linha, index) => {
-                if (index === 0) return; // cabeçalho
-                const texto = linha.children[1].textContent.toLowerCase();
-                linha.style.display = texto.includes(filtro) ? '' : 'none';
-            });
-        });
-
-        // Gerar conteúdo da modal
-        document.getElementById('btnVerLista').addEventListener('click', function () {
-            const lista = document.getElementById('listaLouvores');
-            lista.innerHTML = '';
-
-            const linhas = tabelaAdicionados.querySelectorAll('tr');
-
-            if (linhas.length === 0) {
-                const item = document.createElement('li');
-                item.className = 'list-group-item';
-                item.textContent = 'Nenhum louvor adicionado.';
-                lista.appendChild(item);
-                return;
-            }
-
-            linhas.forEach(linha => {
-                const numero = linha.children[0].textContent.trim();
-                const nome = linha.children[1].textContent.trim();
-
-                const item = document.createElement('li');
-                item.className = 'list-group-item';
-
-                const link = document.createElement('a');
-                link.href = `${numero}.html`;
-                link.textContent = `${numero} - ${nome}`;
-                link.target = '_blank';
-
-                item.appendChild(link);
-                lista.appendChild(item);
-            });
-        });
+        function mostrarGabarito() {
+            document.getElementById('gabarito').style.display = 'block';
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
     </script>
-
 </body>
 
 </html>
