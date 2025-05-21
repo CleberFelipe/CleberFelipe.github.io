@@ -89,8 +89,8 @@
 
 <body>
     <div class="container">
-        <h1>Atividade Avaliativa: Comandos SQL</h1>
-
+        <h1>Atividade Avaliativa da UC10 - Banco de Dados</h1>
+        <p>&nbsp;</p>
         <div class="tables">
             <table>
                 <tr>
@@ -178,84 +178,97 @@
                 </tr>
             </table>
         </div>
-        <h1>Respondas as seguintes questões</h1>
-        <form onsubmit="mostrarGabarito(); return false;">
+        <p>&nbsp;</p>
+        <h1 style="text-align: left;">Identifique-se</h1>
+        <form method="POST" action="enviar.php" onsubmit="mostrarGabarito(); return false;">
+            <div class="question mt-4 p-5 bg-light rounded">*Digite seu Nome
+                <input type="text" name="aluno" id="aluno" class="form-control" required>
+            </div>
+            <p>&nbsp;</p>
+            <h1 style="text-align: left;">Respondas as seguintes questões</h1>
+            <p class="text-white bg-danger p-4 rounded">OBSERVAÇÕES:
+                <br>1. Todas as questões são obrigatórias, caso não saiba a resposta, digite "não sei".
+                <br>2. Só envie as respostas UMA VEZ, apenas o primeiro envio será corrigido. 
+                <br>3. NÃO converse com seus colegas.
+                <br>4. Avise o PROFESSOR quando enviar as respostas.
+            </p>
+            <p>&nbsp;</p>
             <!-- INSERT -->
             <div class="question"><strong>1.</strong> Insira um novo produto com os seguintes dados: ID = 101, NOME =
-                'Arroz', PESO = 5.0, CATEGORIA = 'Alimento', VALIDADE = '2025-12-31'.<br><textarea name="q1"></textarea>
+                'Arroz', PESO = 5.0, CATEGORIA = 'Alimento', VALIDADE = '2025-12-31'.<br><textarea name="q1" required></textarea>
             </div>
             <div class="question"><strong>2.</strong> Cadastre um produto chamado 'Leite' com peso 1.0, categoria
                 'Bebida' e
-                validade '2025-10-01'.<br><textarea name="q2"></textarea></div>
+                validade '2025-10-01'.<br><textarea name="q2" required></textarea></div>
             <div class="question"><strong>3.</strong> Insira uma nova compra com ID 1, relacionada ao produto com ID
-                101, com preço 20.00, quantidade 3 e data da compra '2025-05-01'.<br><textarea name="q3"></textarea></div>
+                101, com preço 20.00, quantidade 3 e data da compra '2025-05-01'.<br><textarea name="q3" required></textarea></div>
             <div class="question"><strong>4.</strong> Insira uma nova compra com ID 2, relacionada ao produto com ID 102, com preço 4.50, quantidade
                 10
-                e data de compra '2025-04-30'.<br><textarea name="q4"></textarea></div>
+                e data de compra '2025-04-30'.<br><textarea name="q4" required></textarea></div>
             <div class="question"><strong>5.</strong> Faça um INSERT que insira três produtos diferentes usando um único
-                comando.<br><textarea name="q5"></textarea></div>
+                comando.<br><textarea name="q5" required></textarea></div>
 
             <!-- SELECT (fácil) -->
             <div class="question"><strong>6.</strong> Selecione todos os dados da tabela PRODUTO.<br><textarea
-                    name="q6"></textarea></div>
+                    name="q6" required></textarea></div>
             <div class="question"><strong>7.</strong> Exiba apenas os nomes dos produtos da tabela PRODUTO.<br><textarea
-                    name="q7"></textarea></div>
+                    name="q7" required></textarea></div>
             <div class="question"><strong>8.</strong> Liste os produtos da categoria 'Alimento'.<br><textarea
-                    name="q8"></textarea></div>
+                    name="q8" required></textarea></div>
             <div class="question"><strong>9.</strong> Mostre o nome e o peso dos produtos com peso maior que
-                2.0.<br><textarea name="q9"></textarea></div>
+                2.0.<br><textarea name="q9" required></textarea></div>
             <div class="question"><strong>10.</strong> Liste todos os produtos com validade antes de
-                '2025-11-01'.<br><textarea name="q10"></textarea></div>
+                '2025-11-01'.<br><textarea name="q10" required></textarea></div>
             <div class="question"><strong>11.</strong> Exiba os produtos ordenados pelo nome em ordem
-                alfabética.<br><textarea name="q11"></textarea></div>
+                alfabética.<br><textarea name="q11" required></textarea></div>
 
             <!-- SELECT (médio) -->
             <div class="question"><strong>12.</strong> Mostre os produtos cujo nome começa com a letra 'L'.<br><textarea
-                    name="q12"></textarea></div>
+                    name="q12" required></textarea></div>
             <div class="question"><strong>13.</strong> Exiba os produtos com validade no mês 10.<br><textarea
-                    name="q13"></textarea>
+                    name="q13" required></textarea>
             </div>
             <div class="question"><strong>14.</strong> Liste os produtos da categoria 'Bebida' ordenados por
-                validade.<br><textarea name="q14"></textarea></div>
+                validade.<br><textarea name="q14" required></textarea></div>
             <div class="question"><strong>15.</strong> Exiba os produtos com peso entre 1.0 e 3.0 e validade após
-                '2025-06-01'.<br><textarea name="q15"></textarea></div>
+                '2025-06-01'.<br><textarea name="q15" required></textarea></div>
             <div class="question"><strong>16.</strong> Mostre os nomes dos produtos e seus pesos, renomeando as
-                colunas para 'Produto' e 'Preço (kg)'.<br><textarea name="q16"></textarea></div>
+                colunas para 'Produto' e 'Preço (kg)'.<br><textarea name="q16" required></textarea></div>
             <div class="question"><strong>17.</strong> Selecione as compras cujos produtos pertencem à categoria
-                'Alimento'.<br><textarea name="q17"></textarea></div>
+                'Alimento'.<br><textarea name="q17" required></textarea></div>
 
             <!-- SELECT (difícil) -->
             <div class="question"><strong>18.</strong> Liste todas as compras com nome do produto, preço e
-                quantidade.<br><textarea name="q18"></textarea></div>
-            <div class="question"><strong>19.</strong> Mostre o nome dos produtos comprados em maio e junho.<br><textarea name="q19"></textarea></div>
-            <div class="question"><strong>20.</strong> Exiba o nome dos produtos da categoria 'Bebidas' que foram comprados.<br><textarea name="q20"></textarea></div>
+                quantidade.<br><textarea name="q18" required></textarea></div>
+            <div class="question"><strong>19.</strong> Mostre o nome dos produtos comprados em maio e junho.<br><textarea name="q19" required></textarea></div>
+            <div class="question"><strong>20.</strong> Exiba o nome dos produtos da categoria 'Bebidas' que foram comprados.<br><textarea name="q20" required></textarea></div>
             <div class="question"><strong>21.</strong> Liste os produtos que foram comprados cuja quantidade foi maior que 4 unidades.<br><textarea
-                    name="q21"></textarea></div>
-            <div class="question"><strong>22.</strong> Mostre as compras realizadas dos produtos com data de vencimento em novembro.<br><textarea name="q22"></textarea></div>
-            <div class="question"><strong>23.</strong> Exiba o nome dos produtos que foram compradas mais de 5 unidades por menos de R$ 20,00 cada.<br><textarea name="q23"></textarea></div>
+                    name="q21" required></textarea></div>
+            <div class="question"><strong>22.</strong> Mostre as compras realizadas dos produtos com data de vencimento em novembro.<br><textarea name="q22" required></textarea></div>
+            <div class="question"><strong>23.</strong> Exiba o nome dos produtos que foram compradas mais de 5 unidades por menos de R$ 20,00 cada.<br><textarea name="q23" required></textarea></div>
 
             <!-- UPDATE -->
             <div class="question"><strong>24.</strong> Atualize o peso do produto com ID 101 para 5.5.<br><textarea
-                    name="q24"></textarea></div>
+                    name="q24" required></textarea></div>
             <div class="question"><strong>25.</strong> Altere a validade do produto 'Leite' para
-                '2025-12-01'.<br><textarea name="q25"></textarea></div>
+                '2025-12-01'.<br><textarea name="q25" required></textarea></div>
             <div class="question"><strong>26.</strong> Aumente o preço em 10% de todas as compras feitas antes de
-                '2025-05-01'.<br><textarea name="q26"></textarea></div>
+                '2025-05-01'.<br><textarea name="q26" required></textarea></div>
             <div class="question"><strong>27.</strong> Corrija a categoria de todos os produtos chamados 'Leite' para
-                'Laticínio'.<br><textarea name="q27"></textarea></div>
+                'Laticínio'.<br><textarea name="q27" required></textarea></div>
 
             <!-- DELETE -->
-            <div class="question"><strong>28.</strong> Delete a compra com ID 1.<br><textarea name="q28"></textarea>
+            <div class="question"><strong>28.</strong> Delete a compra com ID 1.<br><textarea name="q28" required></textarea>
             </div>
             <div class="question"><strong>29.</strong> Remova todos os produtos com validade anterior a
-                '2025-01-01'.<br><textarea name="q29"></textarea></div>
+                '2025-01-01'.<br><textarea name="q29" required></textarea></div>
             <div class="question"><strong>30.</strong> Apague todas as compras associadas ao produto de ID
-                102.<br><textarea name="q30"></textarea></div>
+                102.<br><textarea name="q30" required></textarea></div>
 
 
             <!-- Questões aqui (mantidas como estavam) -->
             <!-- ... (omitir repetição por limitação) -->
-            <input type="submit" value="Enviar Respostas">
+            <input class="bg-warning py-3 px-5" type="submit" value="Enviar Respostas">
         </form>
 
         <div class="gabarito" id="gabarito">
