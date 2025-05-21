@@ -2,20 +2,14 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atividade Avaliativa SQL</title>
-    <!-- Bootstrap CSS -->
+    <meta charset="UTF-8">
+    <title>Atividade SQL - 30 Questões</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f5f5f5;
-        }
-
-        h1 {
-            text-align: center;
+            padding: 20px;
         }
 
         .tables {
@@ -42,7 +36,12 @@
             color: white;
         }
 
-        .question {
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        .questao {
             background: #fff;
             padding: 15px;
             margin-bottom: 15px;
@@ -52,228 +51,156 @@
 
         textarea {
             width: 100%;
-            height: 80px;
-            margin-top: 10px;
+            height: 60px;
+            resize: vertical;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
         }
 
         input[type="submit"] {
-            display: block;
-            margin: 30px auto;
-            padding: 10px 30px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
+            padding: 10px 20px;
             font-size: 16px;
+            background-color: #ffc107;
+            border: none;
+            cursor: pointer;
         }
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        .gabarito {
+        #gabarito {
             display: none;
-            background: #fff;
+            margin-top: 50px;
+            background: #f8f9fa;
             padding: 20px;
-            border-radius: 8px;
-            margin-top: 40px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
         }
 
-        .gabarito pre {
+        pre {
             white-space: pre-wrap;
+            word-wrap: break-word;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h1>Atividade Avaliativa da UC10 - Banco de Dados</h1>
-        <p>&nbsp;</p>
-        <div class="tables">
-            <table>
-                <tr>
-                    <th colspan="5">
-                        PRODUTO
-                    </th>
-                </tr>
-                <tr>
-                    <th>IDPRODUTO</th>
-                    <th>NOME</th>
-                    <th>PESO</th>
-                    <th>CATEGORIA</th>
-                    <th>VALIDADE</th>
-                </tr>
-                <tr>
-                    <td>101</td>
-                    <td>Arroz</td>
-                    <td>5.0</td>
-                    <td>Alimento</td>
-                    <td>2025-12-31</td>
-                </tr>
-                <tr>
-                    <td>102</td>
-                    <td>Leite</td>
-                    <td>1.0</td>
-                    <td>Bebida</td>
-                    <td>2025-10-01</td>
-                </tr>
-                <tr>
-                    <td>103</td>
-                    <td>Feijão</td>
-                    <td>1.0</td>
-                    <td>Alimento</td>
-                    <td>2025-11-15</td>
-                </tr>
-                <tr>
-                    <td>104</td>
-                    <td>Suco</td>
-                    <td>1.5</td>
-                    <td>Bebida</td>
-                    <td>2025-09-20</td>
-                </tr>
-            </table>
+<div class="container">
+    <h1 class="text-start display-4">Atividade Avaliativa da UC10 - Banco de Dados</h1>
+    <h4 class="text-start">Professor: Cleber Felipe</h4>
+    <p>&nbsp;</p>
+    <div class="tables">
+        <table>
+            <tr>
+                <th colspan="5">
+                    PRODUTO
+                </th>
+            </tr>
+            <tr>
+                <th>IDPRODUTO</th>
+                <th>NOME</th>
+                <th>PESO</th>
+                <th>CATEGORIA</th>
+                <th>VALIDADE</th>
+            </tr>
+            <tr>
+                <td>101</td>
+                <td>Arroz</td>
+                <td>5.0</td>
+                <td>Alimento</td>
+                <td>2025-12-31</td>
+            </tr>
+            <tr>
+                <td>102</td>
+                <td>Leite</td>
+                <td>1.0</td>
+                <td>Bebida</td>
+                <td>2025-10-01</td>
+            </tr>
+            <tr>
+                <td>103</td>
+                <td>Feijão</td>
+                <td>1.0</td>
+                <td>Alimento</td>
+                <td>2025-11-15</td>
+            </tr>
+            <tr>
+                <td>104</td>
+                <td>Suco</td>
+                <td>1.5</td>
+                <td>Bebida</td>
+                <td>2025-09-20</td>
+            </tr>
+        </table>
 
-            <table>
-                <tr>
-                    <th colspan="5">
-                        COMPRA
-                    </th>
-                </tr>
-                <tr>
-                    <th>IDCOMPRA</th>
-                    <th>IDPRODUTO</th>
-                    <th>PRECO</th>
-                    <th>QUANTIDADE</th>
-                    <th>DATA_COMPRA</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>101</td>
-                    <td>20.00</td>
-                    <td>3</td>
-                    <td>2025-05-01</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>102</td>
-                    <td>4.50</td>
-                    <td>10</td>
-                    <td>2025-04-30</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>103</td>
-                    <td>7.20</td>
-                    <td>5</td>
-                    <td>2025-05-10</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>101</td>
-                    <td>19.00</td>
-                    <td>2</td>
-                    <td>2025-06-01</td>
-                </tr>
-            </table>
-        </div>
+        <table>
+            <tr>
+                <th colspan="5">
+                    COMPRA
+                </th>
+            </tr>
+            <tr>
+                <th>IDCOMPRA</th>
+                <th>IDPRODUTO</th>
+                <th>PRECO</th>
+                <th>QUANTIDADE</th>
+                <th>DATA_COMPRA</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>101</td>
+                <td>20.00</td>
+                <td>3</td>
+                <td>2025-05-01</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>102</td>
+                <td>4.50</td>
+                <td>10</td>
+                <td>2025-04-30</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>103</td>
+                <td>7.20</td>
+                <td>5</td>
+                <td>2025-05-10</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>101</td>
+                <td>19.00</td>
+                <td>2</td>
+                <td>2025-06-01</td>
+            </tr>
+        </table>
+    </div>
+
+    <p>&nbsp;</p>
+    <h2 style="text-align: left;">Nome do Aluno:</h2>
+    
+    <div class="question mt-4 p-5 bg-warning rounded">
+        <input class="form-control" type="text" id="aluno" placeholder="Digite seu nome completo" required>
+    </div>
+    <form id="atividadeForm">
         <p>&nbsp;</p>
-        <h1 style="text-align: left;">Identifique-se</h1>
-        <form method="POST" action="enviar.php" onsubmit="mostrarGabarito(); return false;">
-            <div class="question mt-4 p-5 bg-light rounded">*Digite seu Nome
-                <input type="text" name="aluno" id="aluno" class="form-control" required>
-            </div>
-            <p>&nbsp;</p>
-            <h1 style="text-align: left;">Respondas as seguintes questões</h1>
+        <h2 style="text-align: left;">Respondas as questões abaixo</h2>
             <p class="text-white bg-danger p-4 rounded">OBSERVAÇÕES:
                 <br>1. Todas as questões são obrigatórias, caso não saiba a resposta, digite "não sei".
                 <br>2. Só envie as respostas UMA VEZ, apenas o primeiro envio será corrigido. 
                 <br>3. NÃO converse com seus colegas.
                 <br>4. Avise o PROFESSOR quando enviar as respostas.
             </p>
-            <p>&nbsp;</p>
-            <!-- INSERT -->
-            <div class="question"><strong>1.</strong> Insira um novo produto com os seguintes dados: ID = 101, NOME =
-                'Arroz', PESO = 5.0, CATEGORIA = 'Alimento', VALIDADE = '2025-12-31'.<br><textarea name="q1" required></textarea>
-            </div>
-            <div class="question"><strong>2.</strong> Cadastre um produto chamado 'Leite' com peso 1.0, categoria
-                'Bebida' e
-                validade '2025-10-01'.<br><textarea name="q2" required></textarea></div>
-            <div class="question"><strong>3.</strong> Insira uma nova compra com ID 1, relacionada ao produto com ID
-                101, com preço 20.00, quantidade 3 e data da compra '2025-05-01'.<br><textarea name="q3" required></textarea></div>
-            <div class="question"><strong>4.</strong> Insira uma nova compra com ID 2, relacionada ao produto com ID 102, com preço 4.50, quantidade
-                10
-                e data de compra '2025-04-30'.<br><textarea name="q4" required></textarea></div>
-            <div class="question"><strong>5.</strong> Faça um INSERT que insira três produtos diferentes usando um único
-                comando.<br><textarea name="q5" required></textarea></div>
 
-            <!-- SELECT (fácil) -->
-            <div class="question"><strong>6.</strong> Selecione todos os dados da tabela PRODUTO.<br><textarea
-                    name="q6" required></textarea></div>
-            <div class="question"><strong>7.</strong> Exiba apenas os nomes dos produtos da tabela PRODUTO.<br><textarea
-                    name="q7" required></textarea></div>
-            <div class="question"><strong>8.</strong> Liste os produtos da categoria 'Alimento'.<br><textarea
-                    name="q8" required></textarea></div>
-            <div class="question"><strong>9.</strong> Mostre o nome e o peso dos produtos com peso maior que
-                2.0.<br><textarea name="q9" required></textarea></div>
-            <div class="question"><strong>10.</strong> Liste todos os produtos com validade antes de
-                '2025-11-01'.<br><textarea name="q10" required></textarea></div>
-            <div class="question"><strong>11.</strong> Exiba os produtos ordenados pelo nome em ordem
-                alfabética.<br><textarea name="q11" required></textarea></div>
+        <div id="questoes"></div>
 
-            <!-- SELECT (médio) -->
-            <div class="question"><strong>12.</strong> Mostre os produtos cujo nome começa com a letra 'L'.<br><textarea
-                    name="q12" required></textarea></div>
-            <div class="question"><strong>13.</strong> Exiba os produtos com validade no mês 10.<br><textarea
-                    name="q13" required></textarea>
-            </div>
-            <div class="question"><strong>14.</strong> Liste os produtos da categoria 'Bebida' ordenados por
-                validade.<br><textarea name="q14" required></textarea></div>
-            <div class="question"><strong>15.</strong> Exiba os produtos com peso entre 1.0 e 3.0 e validade após
-                '2025-06-01'.<br><textarea name="q15" required></textarea></div>
-            <div class="question"><strong>16.</strong> Mostre os nomes dos produtos e seus pesos, renomeando as
-                colunas para 'Produto' e 'Preço (kg)'.<br><textarea name="q16" required></textarea></div>
-            <div class="question"><strong>17.</strong> Selecione as compras cujos produtos pertencem à categoria
-                'Alimento'.<br><textarea name="q17" required></textarea></div>
+        <input class="bg-warning py-3 px-5" type="submit" value="Enviar Respostas">
+    </form>
 
-            <!-- SELECT (difícil) -->
-            <div class="question"><strong>18.</strong> Liste todas as compras com nome do produto, preço e
-                quantidade.<br><textarea name="q18" required></textarea></div>
-            <div class="question"><strong>19.</strong> Mostre o nome dos produtos comprados em maio e junho.<br><textarea name="q19" required></textarea></div>
-            <div class="question"><strong>20.</strong> Exiba o nome dos produtos da categoria 'Bebidas' que foram comprados.<br><textarea name="q20" required></textarea></div>
-            <div class="question"><strong>21.</strong> Liste os produtos que foram comprados cuja quantidade foi maior que 4 unidades.<br><textarea
-                    name="q21" required></textarea></div>
-            <div class="question"><strong>22.</strong> Mostre as compras realizadas dos produtos com data de vencimento em novembro.<br><textarea name="q22" required></textarea></div>
-            <div class="question"><strong>23.</strong> Exiba o nome dos produtos que foram compradas mais de 5 unidades por menos de R$ 20,00 cada.<br><textarea name="q23" required></textarea></div>
-
-            <!-- UPDATE -->
-            <div class="question"><strong>24.</strong> Atualize o peso do produto com ID 101 para 5.5.<br><textarea
-                    name="q24" required></textarea></div>
-            <div class="question"><strong>25.</strong> Altere a validade do produto 'Leite' para
-                '2025-12-01'.<br><textarea name="q25" required></textarea></div>
-            <div class="question"><strong>26.</strong> Aumente o preço em 10% de todas as compras feitas antes de
-                '2025-05-01'.<br><textarea name="q26" required></textarea></div>
-            <div class="question"><strong>27.</strong> Corrija a categoria de todos os produtos chamados 'Leite' para
-                'Laticínio'.<br><textarea name="q27" required></textarea></div>
-
-            <!-- DELETE -->
-            <div class="question"><strong>28.</strong> Delete a compra com ID 1.<br><textarea name="q28" required></textarea>
-            </div>
-            <div class="question"><strong>29.</strong> Remova todos os produtos com validade anterior a
-                '2025-01-01'.<br><textarea name="q29" required></textarea></div>
-            <div class="question"><strong>30.</strong> Apague todas as compras associadas ao produto de ID
-                102.<br><textarea name="q30" required></textarea></div>
-
-
-            <!-- Questões aqui (mantidas como estavam) -->
-            <!-- ... (omitir repetição por limitação) -->
-            <input class="bg-warning py-3 px-5" type="submit" value="Enviar Respostas">
-        </form>
-
-        <div class="gabarito" id="gabarito">
-            <h2>Gabarito</h2>
-            <pre>
+    <div id="gabarito">
+        <h2>Gabarito</h2>
+        <pre>
     1. INSERT INTO PRODUTO VALUES (101, 'Arroz', 5.0, 'Alimento', '2025-12-31');
     2. INSERT INTO PRODUTO VALUES (102, 'Leite', 1.0, 'Bebida', '2025-10-01');
     3. INSERT INTO COMPRA VALUES (1, 101, 20.00, 3, '2025-05-01');
@@ -304,15 +231,96 @@
     28. DELETE FROM COMPRA WHERE IDCOMPRA = 1;
     29. DELETE FROM PRODUTO WHERE VALIDADE < '2025-01-01';
     30. DELETE FROM COMPRA WHERE IDPRODUTO = 102;
-        </pre>
-        </div>
+  </pre>
     </div>
+</div>
+
     <script>
+        const { jsPDF } = window.jspdf;
+
+        // Gerar 30 perguntas automaticamente
+        const perguntas = [
+            "1. Insira um novo produto com os seguintes dados: ID = 101, NOME = 'Arroz', PESO = 5.0, CATEGORIA = 'Alimento', VALIDADE = '2025-12-31'.",
+            "2. Cadastre um produto chamado 'Leite' com peso 1.0, categoria 'Bebida' e validade '2025-10-01'.",
+            "3. Insira uma nova compra com ID 1, relacionada ao produto com ID 101, com preço 20.00, quantidade 3 e data da compra '2025-05-01'.",
+            "4. Insira uma nova compra com ID 2, relacionada ao produto com ID 102, com preço 4.50, quantidade 10 e data de compra '2025-04-30'.",
+            "5. Faça um INSERT que insira três produtos diferentes usando um único comando.",
+            "6. Selecione todos os dados da tabela PRODUTO.",
+            "7. Exiba apenas os nomes dos produtos da tabela PRODUTO.",
+            "8. Liste os produtos da categoria 'Alimento'.",
+            "9. Mostre o nome e o peso dos produtos com peso maior que 2.0.",
+            "10. Liste todos os produtos com validade antes de '2025-11-01'.",
+            "11. Exiba os produtos ordenados pelo nome em ordem alfabética.",
+            "12. Mostre os produtos cujo nome começa com a letra 'L'.",
+            "13. Exiba os produtos com validade no mês 10.",
+            "14. Liste os produtos da categoria 'Bebida' ordenados por validade.",
+            "15. Exiba os produtos com peso entre 1.0 e 3.0 e validade após '2025-06-01'.",
+            "16. Mostre os nomes dos produtos e seus pesos, renomeando as colunas para 'Produto' e 'Preço (kg)'.",
+            "17. Selecione as compras cujos produtos pertencem à categoria 'Alimento'.",
+            "18. Liste todas as compras com nome do produto, preço e quantidade.",
+            "19. Mostre o nome dos produtos comprados em maio e junho.",
+            "20. Exiba o nome dos produtos da categoria 'Bebidas' que foram comprados.",
+            "21. Liste os produtos que foram comprados cuja quantidade foi maior que 4 unidades.",
+            "22. Mostre as compras realizadas dos produtos com data de vencimento em novembro.",
+            "23. Exiba o nome dos produtos que foram compradas mais de 5 unidades por menos de R$ 20,00 cada.",
+            "24. Atualize o peso do produto com ID 101 para 5.5.",
+            "25. Altere a validade do produto 'Leite' para '2025-12-01'.",
+            "26. Aumente o preço em 10% de todas as compras feitas antes de '2025-05-01'.",
+            "27. Corrija a categoria de todos os produtos chamados 'Leite' para 'Laticínio'.",
+            "28. Delete a compra com ID 1.",
+            "29. Remova todos os produtos com validade anterior a '2025-01-01'.",
+            "30. Apague todas as compras associadas ao produto de ID 102."
+        ];
+
+        const questoesContainer = document.getElementById("questoes");
+
+        perguntas.forEach((pergunta, i) => {
+            const div = document.createElement("div");
+            div.className = "questao";
+            div.innerHTML = `
+      <label for="q${i + 1}">${pergunta}</label>
+      <textarea name="q${i + 1}" required></textarea>
+    `;
+            questoesContainer.appendChild(div);
+        });
+
+        // PDF e gabarito
+        document.getElementById("atividadeForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const aluno = document.getElementById("aluno").value.trim();
+            if (!aluno) {
+                alert("Por favor, preencha seu nome.");
+                return;
+            }
+
+            const doc = new jsPDF();
+            let y = 10;
+            doc.setFontSize(14);
+            doc.text(`Nome do Aluno: ${aluno}`, 10, y);
+            y += 10;
+
+            perguntas.forEach((pergunta, i) => {
+                const resposta = document.querySelector(`[name="q${i + 1}"]`).value.trim();
+                const texto = `${pergunta}\nResposta: ${resposta}`;
+                const linhas = doc.splitTextToSize(texto, 180);
+                if (y + linhas.length * 10 > 280) {
+                    doc.addPage();
+                    y = 10;
+                }
+                doc.text(linhas, 10, y);
+                y += linhas.length * 10;
+            });
+
+            doc.save(`Respostas_${aluno.replace(/\s+/g, '_')}.pdf`);
+            mostrarGabarito();
+        });
+
         function mostrarGabarito() {
             document.getElementById('gabarito').style.display = 'block';
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     </script>
+
 </body>
 
 </html>
