@@ -199,39 +199,13 @@
     </form>
 
     <div id="gabarito">
-        <h2>Gabarito</h2>
-        <pre>
-    1. INSERT INTO PRODUTO VALUES (101, 'Arroz', 5.0, 'Alimento', '2025-12-31');
-    2. INSERT INTO PRODUTO VALUES (102, 'Leite', 1.0, 'Bebida', '2025-10-01');
-    3. INSERT INTO COMPRA VALUES (1, 101, 20.00, 3, '2025-05-01');
-    4. INSERT INTO COMPRA VALUES (2, 102, 4.50, 10, '2025-04-30');
-    5. INSERT INTO PRODUTO (IDPRODUTO, NOME, PESO, CATEGORIA, VALIDADE) VALUES (105, 'Macarrão', 0.5, 'Alimento', '2025-12-01'), (106, 'Refrigerante', 2.0, 'Bebida', '2025-10-10'), (107, 'Café', 0.25, 'Bebida', '2026-01-01');
-    6. SELECT * FROM PRODUTO;
-    7. SELECT NOME FROM PRODUTO;
-    8. SELECT * FROM PRODUTO WHERE CATEGORIA = 'Alimento';
-    9. SELECT NOME, PESO FROM PRODUTO WHERE PESO > 2.0;
-    10. SELECT * FROM PRODUTO WHERE VALIDADE < '2025-11-01';
-    11. SELECT * FROM PRODUTO ORDER BY NOME;
-    12. SELECT * FROM PRODUTO WHERE NOME LIKE 'L%';
-    13. SELECT * FROM PRODUTO WHERE MONTH(DATA_VALIDADE) = 10;
-    14. SELECT * FROM PRODUTO WHERE CATEGORIA = 'Bebida' ORDER BY VALIDADE;
-    15. SELECT * FROM PRODUTO WHERE PESO BETWEEN 1.0 AND 3.0 AND VALIDADE > '2025-06-01';
-    16. SELECT NOME AS "Produto", PESO AS "Peso (kg)" FROM PRODUTO;
-    17. SELECT COMPRA.* FROM COMPRA, PRODUTO WHERE CATEGORIA = 'Alimento' AND COMPRA.IDPRODUTO = PRODUTO.IDPRODUTO;
-    18. SELECT C.IDCOMPRA, P.NOME, C.PRECO, C.QUANTIDADE FROM COMPRA C JOIN PRODUTO P ON C.IDPRODUTO = P.IDPRODUTO;
-    19. SELECT P.NOME FROM COMPRA C, PRODUTO P WHERE MONTH(C.DATA_COMPRA) IN (5, 6) AND C.IDPRODUTO = P.IDPRODUTO;
-    20. SELECT P.NOME FROM COMPRA C, PRODUTO P WHERE P.CATEGORIA = 'Bebida' AND  C.IDPRODUTO = P.IDPRODUTO;
-    21. SELECT P.* FROM PRODUTO P, COMPRA C WHERE C.QUANTIDADE > 4 AND C.IDPRODUTO = P.IDPRODUTO;
-    22. SELECT C.* FROM COMPRA C, PRODUTO P WHERE C.IDPRODUTO = P.IDPRODUTO AND MONTH(P.VALIDADE) = 11;
-    23. SELECT P.NOME FROM COMPRA C, PRODUTO P WHERE C.IDPRODUTO = P.IDPRODUTO AND C.QUANTIDADE > 5 AND C.PRECO < 20.00;
-    24. UPDATE PRODUTO SET PESO = 5.5 WHERE IDPRODUTO = 101;
-    25. UPDATE PRODUTO SET VALIDADE = '2025-12-01' WHERE NOME = 'Leite';
-    26. UPDATE COMPRA SET PRECO = PRECO * 1.10 WHERE DATA_COMPRA < '2025-05-01';
-    27. UPDATE PRODUTO SET CATEGORIA = 'Laticínio' WHERE NOME = 'Leite';
-    28. DELETE FROM COMPRA WHERE IDCOMPRA = 1;
-    29. DELETE FROM PRODUTO WHERE VALIDADE < '2025-01-01';
-    30. DELETE FROM COMPRA WHERE IDPRODUTO = 102;
-  </pre>
+        <h2>ATENÇÃO!!!</h2>
+        <p>
+           ENVIE O ARQUIVO BAIXADO PARA O E-MAIL ABAIXO:<br/><br/>
+           E-mail: cleber.silva@edu.es.senac.br <br/><br/>
+           As respostas "gabarito" serão enviadas para o seu e-mail!<br/><br/><br/>
+           <i>Quem está preparado não depende da sorte!!!</i> 
+        </p>
     </div>
 </div>
 
@@ -240,36 +214,36 @@
 
         // Gerar 30 perguntas automaticamente
         const perguntas = [
-            "1. Insira um novo produto com os seguintes dados: ID = 101, NOME = 'Arroz', PESO = 5.0, CATEGORIA = 'Alimento', VALIDADE = '2025-12-31'.",
-            "2. Cadastre um produto chamado 'Leite' com peso 1.0, categoria 'Bebida' e validade '2025-10-01'.",
-            "3. Insira uma nova compra com ID 1, relacionada ao produto com ID 101, com preço 20.00, quantidade 3 e data da compra '2025-05-01'.",
-            "4. Insira uma nova compra com ID 2, relacionada ao produto com ID 102, com preço 4.50, quantidade 10 e data de compra '2025-04-30'.",
-            "5. Faça um INSERT que insira três produtos diferentes usando um único comando.",
-            "6. Selecione todos os dados da tabela PRODUTO.",
-            "7. Exiba apenas os nomes dos produtos da tabela PRODUTO.",
-            "8. Liste os produtos da categoria 'Alimento'.",
-            "9. Mostre o nome e o peso dos produtos com peso maior que 2.0.",
-            "10. Liste todos os produtos com validade antes de '2025-11-01'.",
-            "11. Exiba os produtos ordenados pelo nome em ordem alfabética.",
-            "12. Mostre os produtos cujo nome começa com a letra 'L'.",
-            "13. Exiba os produtos com validade no mês 10.",
-            "14. Liste os produtos da categoria 'Bebida' ordenados por validade.",
-            "15. Exiba os produtos com peso entre 1.0 e 3.0 e validade após '2025-06-01'.",
-            "16. Mostre os nomes dos produtos e seus pesos, renomeando as colunas para 'Produto' e 'Preço (kg)'.",
-            "17. Selecione as compras cujos produtos pertencem à categoria 'Alimento'.",
-            "18. Liste todas as compras com nome do produto, preço e quantidade.",
-            "19. Mostre o nome dos produtos comprados em maio e junho.",
-            "20. Exiba o nome dos produtos da categoria 'Bebidas' que foram comprados.",
-            "21. Liste os produtos que foram comprados cuja quantidade foi maior que 4 unidades.",
-            "22. Mostre as compras realizadas dos produtos com data de vencimento em novembro.",
-            "23. Exiba o nome dos produtos que foram compradas mais de 5 unidades por menos de R$ 20,00 cada.",
-            "24. Atualize o peso do produto com ID 101 para 5.5.",
-            "25. Altere a validade do produto 'Leite' para '2025-12-01'.",
-            "26. Aumente o preço em 10% de todas as compras feitas antes de '2025-05-01'.",
-            "27. Corrija a categoria de todos os produtos chamados 'Leite' para 'Laticínio'.",
-            "28. Delete a compra com ID 1.",
-            "29. Remova todos os produtos com validade anterior a '2025-01-01'.",
-            "30. Apague todas as compras associadas ao produto de ID 102."
+            "1. Insira um novo produto com o nome 'Arroz', peso 1.0, categoria 'Alimento' e validade '2025-12-31'.",
+"2. Insira uma nova compra do produto com ID 1, preço 4.50, quantidade 2, na data '2025-06-01'.",
+"3. Selecione todos os dados da tabela PRODUTO.",
+"4. Selecione todos os dados da tabela COMPRA.",
+"5. Liste os nomes dos produtos da categoria 'Bebida'.",
+"6. Liste todos os produtos com validade anterior a '2025-01-01'.",
+"7. Liste os produtos com peso maior que 2.0.",
+"8. Liste as compras feitas no mês de junho de 2025.",
+"9. Liste os produtos que tenham a palavra 'arroz' no nome.",
+"10. Altere o nome do produto com ID 3 para 'Feijão Carioca'.",
+"11. Atualize o preço da compra com ID 5 para 7.80.",
+"12. Atualize o peso do produto com ID 4 para 1.5.",
+"13. Delete o produto com ID 10."
+"14. Delete a compra com ID 7.",
+"15. Liste os nomes e validade dos produtos ordenados por data de validade (mais próxima primeiro).",
+"16. Liste os nomes dos produtos e seus respectivos preços da tabela COMPRA.",
+"17. Liste as compras em que a quantidade é maior que 10.",
+"18. Atualize a categoria do produto com ID 2 para 'Higiene'.",
+"19. Liste todos os produtos cujo nome comece com a letra 'S'.",
+"20. Liste os produtos cuja validade esteja entre '2025-01-01' e '2025-12-31'.",
+"21. Altere o nome do produto com ID 6 para 'Macarrão Espaguete'.",
+"22. Delete todos os produtos com validade vencida (anterior a '2025-06-01').",
+"23. Liste os IDs e datas das compras feitas após '2025-05-01'.",
+"24. Insira um novo produto chamado 'Sabão em Pó', com peso 1.2, categoria 'Limpeza', validade '2026-01-01'.",
+"25. Insira uma compra do produto com ID 8, no valor de 9.90, quantidade 1, na data '2025-06-05'.",
+"26. Liste todos os produtos da categoria 'Limpeza'.",
+"27. Atualize todos os produtos da categoria 'Alimento' para a nova categoria 'Alimentos Não Perecíveis'.",
+"28. Liste todas as compras feitas no ano de 2025.",
+"29. Liste os produtos cujo peso seja menor ou igual a 0.5.",
+"30. Delete todas as compras feitas antes de '2025-01-01'."
         ];
 
         const questoesContainer = document.getElementById("questoes");
