@@ -4,94 +4,87 @@
   <meta charset="UTF-8">
   <title>Simulador de Movimento do Robô</title>
   <style>
-    #simulador {
-      width: 500px;
-      height: 500px;
-      border: 2px solid #000;
-      position: relative;
-      background-color: #f0f0f0;
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #formulario {
       margin-bottom: 20px;
     }
-
+    #area {
+      width: 600px;
+      height: 400px;
+      border: 2px solid #000;
+      position: relative;
+      background-color: #f9f9f9;
+    }
     #robo {
       width: 40px;
       height: 40px;
+      background-color: red;
       position: absolute;
-      top: 230px;
-      left: 230px;
-      background-image: url("robot.png");
-      background-size: cover;
+      top: 180px;
+      left: 280px;
     }
-
-    .controles {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .direcoes {
-      display: grid;
-      grid-template-columns: repeat(3, 60px);
-      gap: 5px;
-    }
-
-    input[type="number"] {
-      width: 60px;
+    button {
+      margin-right: 10px;
     }
   </style>
 </head>
 <body>
-
-  <h2>Simulador de Movimento do Robô</h2>
-
-  <div id="simulador">
-    <div id="robo"></div>
+  <h1>Simulador de Movimento do Robô</h1>
+  <div id="formulario">
+    <label>Velocidade (px/s): <input type="number" id="velocidade" value="100"></label>
+    <label>Direção (graus): <input type="number" id="direcao" value="0"></label>
+    <br><br>
+    <button onclick="iniciarMovimento()">Iniciar</button>
+    <button onclick="pausarMovimento()">Pausar</button>
+    <button onclick="pararMovimento()">Parar</button>
   </div>
 
-  <div class="controles">
-    <label>Velocidade: <input type="number" id="velocidade" value="10" min="1"></label>
-
-    <div class="direcoes">
-      <button onmousedown="iniciarMovimento(-1, -1)" onmouseup="pararMovimento()" onmouseleave="pararMovimento()">↖</button>
-      <button onmousedown="iniciarMovimento(0, -1)" onmouseup="pararMovimento()" onmouseleave="pararMovimento()">↑</button>
-      <button onmousedown="iniciarMovimento(1, -1)" onmouseup="pararMovimento()" onmouseleave="pararMovimento()">↗</button>
-      <button onmousedown="iniciarMovimento(-1, 0)" onmouseup="pararMovimento()" onmouseleave="pararMovimento()">←</button>
-      <button disabled>•</button>
-      <button onmousedown="iniciarMovimento(1, 0)" onmouseup="pararMovimento()" onmouseleave="pararMovimento()">→</button>
-      <button onmousedown="iniciarMovimento(-1, 1)" onmouseup="pararMovimento()" onmouseleave="pararMovimento()">↙</button>
-      <button onmousedown="iniciarMovimento(0, 1)" onmouseup="pararMovimento()" onmouseleave="pararMovimento()">↓</button>
-      <button onmousedown="iniciarMovimento(1, 1)" onmouseup="pararMovimento()" onmouseleave="pararMovimento()">↘</button>
-    </div>
+  <div id="area">
+    <div id="robo"></div>
   </div>
 
   <script>
     const robo = document.getElementById('robo');
-    let intervalo;
+    let intervalo = null;
+    let posX = 280;
+    let posY = 180;
+    let velocidade = 0;
+    let direcao = 0;
 
-    function iniciarMovimento(dx, dy) {
-      intervalo = setInterval(() => mover(dx, dy), 50);
+    function iniciarMovimento() {
+      velocidade = parseFloat(document.getElementById('velocidade').value);
+      direcao = parseFloat(document.getElementById('direcao').value);
+
+      const radianos = direcao * (Math.PI / 180);
+      const velX = Math.cos(radianos) * (velocidade / 60); // dividido por 60 FPS
+      const velY = -Math.sin(radianos) * (velocidade / 60);
+
+      if (intervalo) clearInterval(intervalo);
+      intervalo = setInterval(() => {
+        posX += velX;
+        posY += velY;
+        robo.style.left = `${posX}px`;
+        robo.style.top = `${posY}px`;
+      }, 1000 / 60); // 60 FPS
+    }
+
+    function pausarMovimento() {
+      if (intervalo) {
+        clearInterval(intervalo);
+        intervalo = null;
+      }
     }
 
     function pararMovimento() {
-      clearInterval(intervalo);
-    }
-
-    function mover(dx, dy) {
-      const velocidade = parseInt(document.getElementById('velocidade').value);
-      const container = document.getElementById('simulador').getBoundingClientRect();
-
-      let left = robo.offsetLeft + dx * velocidade;
-      let top = robo.offsetTop + dy * velocidade;
-
-      // Limites do contêiner
-      left = Math.max(0, Math.min(left, container.width - robo.offsetWidth));
-      top = Math.max(0, Math.min(top, container.height - robo.offsetHeight));
-
-      robo.style.left = left + 'px';
-      robo.style.top = top + 'px';
+      pausarMovimento();
+      posX = 280;
+      posY = 180;
+      robo.style.left = `${posX}px`;
+      robo.style.top = `${posY}px`;
     }
   </script>
-
 </body>
 </html>
